@@ -2,7 +2,10 @@ package com.company;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
 
 public class WorkFlow {
 
@@ -22,5 +25,10 @@ public class WorkFlow {
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][1]")).click();
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][2]")).click();
 
+        //Find element by text() and List Elements
+//        System.out.println(driver.findElement(By.xpath("//p[text()='File not found!']")));
+        List<WebElement>textDemo= driver.findElements(By.xpath("//p[text()='File not found!']"));
+        System.out.println("Number of web elements: " + ((List<?>) textDemo).size());
+        driver.quit();
     }
 }
