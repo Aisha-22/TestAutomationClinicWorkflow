@@ -34,7 +34,7 @@ public class WorkFlow {
         WebDriverWait wait = new WebDriverWait(driver, 5);//Declaring WebDriver wait
 
         //Index concepts
-        driver.findElement(By.xpath("//input[@type='number']")).sendKeys("9102220327081");
+        driver.findElement(By.xpath("//input[@type='number']")).sendKeys("9002220327081");
 
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][1]")).click();
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][2]")).click();
@@ -47,7 +47,6 @@ public class WorkFlow {
 
         //Object of this class is 'wait' to access the Methods present in this class
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//p[contains(text(),'File not found!')]")));
-
 //        String path = String.format("//p[contains(text(),'File not found!')]");
 //        String textOnPage = driver.findElement(By.xpath(path)).getText();
 //        String textOnPage = driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText();
