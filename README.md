@@ -13,6 +13,9 @@ Initialize browser
 >>Trying to automate 2 buttons that have the same element using Parent Child Xpath. 
 Used Xpath with index 
 
+*Select class
+>To handle drop downs
+
 **Implicit and Explicit
 >Is based on the search results
 >When your code/test executes faster than your browser, test works with elements that are not there.
