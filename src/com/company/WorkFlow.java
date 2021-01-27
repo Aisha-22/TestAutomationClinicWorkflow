@@ -34,7 +34,7 @@ public class WorkFlow {
         WebDriverWait wait = new WebDriverWait(driver, 5);//Declaring WebDriver wait
 
         //Index concepts
-        driver.findElement(By.xpath("//input[@type='number']")).sendKeys("9002220327081");
+        driver.findElement(By.xpath("//input[@type='number']")).sendKeys("9302220327081");
 
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][1]")).click();
         driver.findElement(By.xpath("//button[@class='btn-rnd btn-rnd--white form-control shadow-md'][2]")).click();
@@ -49,21 +49,30 @@ public class WorkFlow {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//p[contains(text(),'File not found!')]")));
 //        String path = String.format("//p[contains(text(),'File not found!')]");
 //        String textOnPage = driver.findElement(By.xpath(path)).getText();
-//        String textOnPage = driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText();
-        System.out.println(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText());
 
+        //Assertions -> Validation / Checkpoints in an application (To Match weather Expected to actual, if not this will fail)
+        Assert.assertEquals(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText(), "File not found!");
+        /*if(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).isSelected()){
+            System.out.println("isSelected");
+            Assert.assertTrue(false);
+        } else {
+            Assert.assertTrue(true);
+        }
+         */
         //Adding the Patients details
         driver.findElement(By.xpath("//h3[contains(text(),'Add Patient')]")).click();
-
         //Selecting the tile of the patient from a dynamic drop down list
         driver.findElement(By.xpath("//select[@id='title']")).click();
         Thread.sleep(3000);
+
+//        Getting the Header of the app
+        System.out.println(driver.findElement(By.xpath("//h1[contains(text(),'Create Consultation')]")).getText());
 
         Select s = new Select(driver.findElement(By.id("title")));
         s.selectByValue("professor");
         driver.findElement(By.xpath("//select[@id='title']")).click();
 
-        //Sending Initials in the input 'sendkeys'
+        //Adding Patients details -> Sending Initials in the input 'sendkeys'
         driver.findElement(By.id("initials")).sendKeys("A.F");
         driver.findElement(By.id("fullNames")).sendKeys("Aisha Fairhope");
         driver.findElement(By.id("lastName")).sendKeys("Hlatshwayo");
@@ -100,17 +109,23 @@ public class WorkFlow {
 
 
         //View Added patient
+//        Thread.sleep(3000);
+//        Assert.assertEquals(driver.findElement(By.cssSelector("main:nth-child(1) app-file-list:nth-child(2) main.paper.shadow div.form-header:nth-child(1) > h1:nth-child(1)")).getText(), "File List");
         driver.findElement(By.xpath("//h3[contains(text(),'View Patents')]")).click();
 
+        //Edit patients details
+        driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[4]/div[1]/span[2]/a[1]")).click();
 
-        /*assertTrue(textOnPage.contains("File not found!"));
-        //getting the text present on the text
-        System.out.println(textOnPage);
-         */
+        driver.findElement(By.cssSelector("select[id='maritalStatus']")).click();
+        driver.findElement(By.xpath("//option[contains(text(),'Single')]")).click();
+        driver.findElement(By.xpath("//button[contains(text(),'edit')]")).click();
 
 
+        //View Added patient
+        driver.findElement(By.xpath("//h3[contains(text(),'View Patents')]")).click();
+        driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[3]/div[1]")).click();
 
-
-        //driver.quit();
+        //To get the added patients details on the File list
+        Assert.assertEquals(driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[2]/div[2]/p[1]/strong[1]")).getText(), "AB");
     }
 }

@@ -34,6 +34,9 @@ clicking 100 clicks which navigate to 100 pages, so each page has a time limit t
 
 Added a List Element and a find element by text()
 
+*Hard code
+>I have written hard, working on a way to maintain my script, so that I am able to add more testcases without no issues
+
 
 
 
