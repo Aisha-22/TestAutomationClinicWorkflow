@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +20,8 @@ import static org.testng.Assert.assertTrue;
 public class WorkFlow {
 
     public void runWorkFlow() throws InterruptedException {
+        //Instantiate the object
+        Konstants k = new Konstants();
 
         // set driver path using setProperty method
         System.setProperty("webdriver.chrome.driver", "C:\\Work\\chromedriver.exe");
@@ -27,6 +30,7 @@ public class WorkFlow {
         WebDriver driver = new ChromeDriver(); // x objectname = operator class();
         // Load website
         driver.get("https://clinic-workflow.web.app/");
+
 
         //Implicit Wait
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -69,36 +73,38 @@ public class WorkFlow {
         System.out.println(driver.findElement(By.xpath("//h1[contains(text(),'Create Consultation')]")).getText());
 
         Select s = new Select(driver.findElement(By.id("title")));
-        s.selectByValue("professor");
+        s.selectByValue(k.title);
         driver.findElement(By.xpath("//select[@id='title']")).click();
 
         //Adding Patients details -> Sending Initials in the input 'sendkeys'
-        driver.findElement(By.id("initials")).sendKeys("A.F");
-        driver.findElement(By.id("fullNames")).sendKeys("Aisha Fairhope");
-        driver.findElement(By.id("lastName")).sendKeys("Hlatshwayo");
+        driver.findElement(By.id("initials")).sendKeys(k.initials);
+        driver.findElement(By.id("fullNames")).sendKeys(k.firstname);
+        driver.findElement(By.id("lastName")).sendKeys(k.lastname);
+        //        k.id = new BigInteger(""); //Throwing an error
         driver.findElement(By.id("idNumber")).sendKeys("9102220327081");
-        driver.findElement(By.id("citizenship")).sendKeys("Yes");
+        driver.findElement(By.id("citizenship")).sendKeys(k.citizenship);
 
         driver.findElement(By.xpath("//select[@id='gender']")).click();
 
         Select select = new Select(driver.findElement(By.id("gender")));
-        select.selectByValue("female");
+        select.selectByValue(k.gender);
         driver.findElement(By.id("gender")).click();
 
         driver.findElement(By.xpath("//select[@id='ethnicity']")).click();
 
         Select selectethnic = new Select(driver.findElement(By.id("ethnicity")));
-        selectethnic.selectByValue("african");
+        selectethnic.selectByValue(k.ethnicity);
         driver.findElement(By.xpath("//select[@id='ethnicity']")).click();
 
         driver.findElement(By.xpath("//select[@id='maritalStatus']")).click();
 
         Select selectstatus = new Select(driver.findElement(By.id("maritalStatus")));
-        selectstatus.selectByValue("married");
+        selectstatus.selectByValue(k.maritalStatus);
         driver.findElement(By.xpath("//select[@id='maritalStatus']")).click();
 
-        driver.findElement(By.id("language")).sendKeys("English");
-        driver.findElement(By.id("religion")).sendKeys("Christian");
+        driver.findElement(By.id("language")).sendKeys(k.language);
+        driver.findElement(By.id("religion")).sendKeys(k.religion);
+        //        k.income = new BigInteger("");
         driver.findElement(By.id("income")).sendKeys("R8 000 000");
 
         //Create an Application
@@ -126,6 +132,10 @@ public class WorkFlow {
         driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[3]/div[1]")).click();
 
         //To get the added patients details on the File list
-        Assert.assertEquals(driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[2]/div[2]/p[1]/strong[1]")).getText(), "AB");
+//        Assert.assertEquals(driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[2]/div[2]/p[1]/strong[1]")).getText(), "AB");
+
+        //How to delete an existing patient
+//        driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[5]/div[1]/span[2]/button[1]")).click();
+
     }
 }

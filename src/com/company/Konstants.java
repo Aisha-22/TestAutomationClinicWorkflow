@@ -2,20 +2,21 @@ package com.company;
 
 import java.math.BigInteger;
 
-//Properties for the Object
+//Properties a variable in a class for the Object
 public class Konstants {
-    String title;
-    String initials;
-    String firstname;
-    String lastname;
-    BigInteger id;
-    String citizenship;
-    String gender;
-    String ethnicity;
-    String maritalStatus;
-    String language;
+    String title = "" ;
+    String initials = "AF";
+    String firstname = "Aisha Fairhope";
+    String lastname = "Hlatshwayo";
+//    BigInteger id = 9102220327081;
+//    long value = 9102220327081;
+    String citizenship = "Yes";
+    String gender = "Female";
+    String ethnicity = "african";
+    String maritalStatus = "married";
+    String language = "English";
     String religion;
-    BigInteger income;
+//    BigInteger income;
 
 //    String [] consProperties = {"Dr", "ZH", "Zandile", "Hlatshwayo", "NumberOfID", "Yes", "Female", "Black", "Married", "Zulu", "Christian", "SalaryPerMonth"  };
 
