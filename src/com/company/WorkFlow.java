@@ -19,21 +19,22 @@ import static org.testng.Assert.assertTrue;
 
 public class WorkFlow {
 
+
     public void runWorkFlow() throws InterruptedException {
-        //Instantiate the object
+        //Instantiate class the object
         Konstants k = new Konstants();
 
-        // set driver path using setProperty method
-        System.setProperty("webdriver.chrome.driver", "C:\\Work\\chromedriver.exe");
+        // set driver path using setProperty method (Chromedriver executable) define my
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Aisha Hlatshwayo\\Desktop\\chromedriver.exe");
 
-        // Initialize browser
+        // Initialize browser instance of a chromedriver
         WebDriver driver = new ChromeDriver(); // x objectname = operator class();
         // Load website
-        driver.get("https://clinic-workflow.web.app/");
+        driver.get("https://clinic-workflow.web.app/"); //Simple opening the web browser and telling it to go to thid url
 
-
-        //Implicit Wait
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        //Explicit scheduled time(Gautrain) - Set time
+        //Implicit whichever time comes ->Wait selenium is executing faster than the rate the browser is moving at.
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); //pause your script
         //Define webdriver wait class
         WebDriverWait wait = new WebDriverWait(driver, 5);//Declaring WebDriver wait
 
@@ -55,7 +56,7 @@ public class WorkFlow {
 //        String textOnPage = driver.findElement(By.xpath(path)).getText();
 
         //Assertions -> Validation / Checkpoints in an application (To Match weather Expected to actual, if not this will fail)
-        Assert.assertEquals(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText(), "File not found!");
+        Assert.assertEquals(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).getText(), "File not found!");//To check if this here
         /*if(driver.findElement(By.xpath("//p[contains(text(),'File not found!')]")).isSelected()){
             System.out.println("isSelected");
             Assert.assertTrue(false);
@@ -76,7 +77,7 @@ public class WorkFlow {
         s.selectByValue(k.title);
         driver.findElement(By.xpath("//select[@id='title']")).click();
 
-        //Adding Patients details -> Sending Initials in the input 'sendkeys'
+        //Adding Patients details -> Sending Initials in the input field adding init 'sendkeys'
         driver.findElement(By.id("initials")).sendKeys(k.initials);
         driver.findElement(By.id("fullNames")).sendKeys(k.firstname);
         driver.findElement(By.id("lastName")).sendKeys(k.lastname);
@@ -119,7 +120,7 @@ public class WorkFlow {
 //        Assert.assertEquals(driver.findElement(By.cssSelector("main:nth-child(1) app-file-list:nth-child(2) main.paper.shadow div.form-header:nth-child(1) > h1:nth-child(1)")).getText(), "File List");
         driver.findElement(By.xpath("//h3[contains(text(),'View Patents')]")).click();
 
-        //Edit patients details
+        //Edit patients details - by clicking the edit button
         driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[4]/div[1]/span[2]/a[1]")).click();
 
         driver.findElement(By.cssSelector("select[id='maritalStatus']")).click();
@@ -127,7 +128,7 @@ public class WorkFlow {
         driver.findElement(By.xpath("//button[contains(text(),'edit')]")).click();
 
 
-        //View Added patient
+        //View Added patient by cling the view patient button
         driver.findElement(By.xpath("//h3[contains(text(),'View Patents')]")).click();
         driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[3]/div[1]")).click();
 
