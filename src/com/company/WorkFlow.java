@@ -1,6 +1,7 @@
 package com.company;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,18 +20,15 @@ import static org.testng.Assert.assertTrue;
 
 public class WorkFlow {
 
-
     public void runWorkFlow() throws InterruptedException {
         //Instantiate class the object
         Konstants k = new Konstants();
-
         // set driver path using setProperty method (Chromedriver executable) define my
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Aisha Hlatshwayo\\Desktop\\chromedriver.exe");
-
         // Initialize browser instance of a chromedriver
         WebDriver driver = new ChromeDriver(); // x objectname = operator class();
         // Load website
-        driver.get("https://clinic-workflow.web.app/"); //Simple opening the web browser and telling it to go to thid url
+        driver.get("https://clinic-workflow.web.app/"); //Simple opening the web browser and telling it to go to the url
 
         //Explicit scheduled time(Gautrain) - Set time
         //Implicit whichever time comes ->Wait selenium is executing faster than the rate the browser is moving at.
@@ -114,7 +112,6 @@ public class WorkFlow {
         //Return to main page
         driver.findElement(By.xpath("//a[@class='link--text-purple']")).click();
 
-
         //View Added patient
 //        Thread.sleep(3000);
 //        Assert.assertEquals(driver.findElement(By.cssSelector("main:nth-child(1) app-file-list:nth-child(2) main.paper.shadow div.form-header:nth-child(1) > h1:nth-child(1)")).getText(), "File List");
@@ -127,7 +124,6 @@ public class WorkFlow {
         driver.findElement(By.xpath("//option[contains(text(),'Single')]")).click();
         driver.findElement(By.xpath("//button[contains(text(),'edit')]")).click();
 
-
         //View Added patient by cling the view patient button
         driver.findElement(By.xpath("//h3[contains(text(),'View Patents')]")).click();
         driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[3]/div[1]")).click();
@@ -137,6 +133,14 @@ public class WorkFlow {
 
         //How to delete an existing patient
 //        driver.findElement(By.xpath("//body/app-root[1]/main[1]/app-file-list[1]/main[1]/div[5]/div[1]/span[2]/button[1]")).click();
+
+
+        //Write a script to scroll in Visible mode (How to Scroll in Selenium)
+        //Initialize JavaScriptExecutor -> Which will help you execute JavaScript related things
+        JavascriptExecutor js = (JavascriptExecutor)driver; //Casting your driver, in the JavascriptExecutor
+        //The Knowledge will be placed in this 'js' object
+        js.executeScript("window.scrollBy(0,500)");//To run any JavaScript on your browser, it can be done from the browser console, then place as an 'argument'
+
 
     }
 }
